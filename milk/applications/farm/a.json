@@ -1,0 +1,11 @@
+[
+    {
+        "milk_report": {
+            "milk_id": "milk id",
+            "cow_id": "cow id",
+            "machine_id": "machine id",
+            "report_data": "report data aaaa"
+        },
+        "timestamp": "2020-02-11 01:52:20 PM"
+    }
+]

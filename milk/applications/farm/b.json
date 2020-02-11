@@ -1,0 +1,31 @@
+{
+    "report_map": {
+        "factory": [
+            {
+                "milk_id": "milk id",
+                "cow_id": "cow id",
+                "machine_id": "machine id",
+                "report_data": "report data aaaa",
+                "timestamp": "2020-02-11 01:52:20 PM"
+            }
+        ],
+        "farm": [
+            {
+                "milk_id": "",
+                "cow_id": "cow id",
+                "machine_id": "",
+                "report_data": "report data for cow lallala ",
+                "timestamp": "2020-02-11 01:51:59 PM"
+            }
+        ],
+        "seller": [
+            {
+                "milk_id": "milk id",
+                "cow_id": "",
+                "machine_id": "",
+                "report_data": "seller operation",
+                "timestamp": "2020-02-11 01:56:01 PM"
+            }
+        ]
+    }
+}
