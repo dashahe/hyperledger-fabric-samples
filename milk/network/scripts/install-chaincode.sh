@@ -33,7 +33,7 @@ getChaincodePackageID() {
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/partya.example.com/users/Admin@partya.example.com/msp
     echo "===================== Query chaincode package ID ===================== "
     peer lifecycle chaincode queryinstalled >&log.txt
-    export PACKAGE_ID=`sed -n '/Package/{s/^Package ID: //; s/, Label:.*$//; p;}' log.txt`
+    export PACKAGE_ID=`sed -n '/Package/{s/^Package ID: //; s/, Label:.*$//; p;}' log.txt | grep $CC_NAME`
     echo "packgeID=$PACKAGE_ID"
 }
 
@@ -82,13 +82,13 @@ initChaincode() {
 	CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/partya.example.com/users/Admin@partya.example.com/msp
     echo "===================== Initializing chaincode ===================== "
     
-    peer chaincode invoke -o milk-orderer:7050 --channelID $CHANNEL_NAME  -n $CC_NAME --peerAddresses milk-partya:7051 milk-partyb:7051 milk-partyc:7051 -c '{"Args":["farm_contract:instantiate"]}' --waitForEvent
+    peer chaincode invoke -o milk-orderer:7050 --channelID $CHANNEL_NAME  -n $CC_NAME --peerAddresses milk-partya:7051 milk-partyb:7051 milk-partyc:7051 -c "{\"Args\":[\"${CC_NAME}_contract:instantiate\"]}" --waitForEvent
     echo "===================== Chaincode initialized ===================== "
 }
 
 
 chaincodeSetUp() {
-    for cc in farm 
+    for cc in farm factory seller
     do
         CC_SRC_PATH=$GOPATH/src/chaincode/$cc/
         CC_NAME=$cc

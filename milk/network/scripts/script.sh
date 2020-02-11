@@ -1,8 +1,7 @@
 #! /bin/bash
 
 CHANNEL_NAME="milkchannel"
-CC_SRC_PATH=$GOPATH/src/milkcc/
-CC_NAME=milkcc
+
 
 ####################### functions ########################
 createChannel() {
@@ -44,6 +43,8 @@ putState() {
 	echo "===================== Chaincode invoked ===================== "
 }
 
+#  peer chaincode invoke -o milk-orderer:7050 -C milkchannel --waitForEvent -n factory --peerAddresses milk-partya:7051 milk-partyb:7051 -c '{"Args":["putMilkReport", "2222", "11111", "666",  "report data aaaa"]}'
+
 ####################### commands ########################
 
 ## create channel
@@ -62,15 +63,15 @@ echo "chaincode set up..."
 . scripts/install-chaincode.sh 
 chaincodeSetUp
 
-## put state in ledger
-echo
-echo "putting state..."
-putState
+# ## put state in ledger
+# echo
+# echo "putting state..."
+# putState
 
-## get state in ledger
-echo
-echo "getState..."
-getState
+# ## get state in ledger
+# echo
+# echo "getState..."
+# getState
 
 ## end
 echo "create channel and install chaincode finished successfully!"

@@ -41,7 +41,7 @@
   - getMilkHistory: milk_id
 - seller chaincode
   - milkReport: milk_id, operation
-  - getMilkHistory: milk_id
+  - getFullMilkHistory: milk_id
 
 ## 搭建网络 && 安装chaincode
 
@@ -51,4 +51,50 @@ sh network.down # if network is running
 sh network.sh
 ```
 
+## example
+首先分别给三个组织都添加数据：
+1.  `peer chaincode invoke -o milk-orderer:7050 -C milkchannel --waitForEvent --peerAddresses milk-partya:7051 milk-partyb:7051 -c '{"Args":["putCowReport", "cow id",  "report data for cow lallala "]}' -n farm `
+2.  `peer chaincode invoke -o milk-orderer:7050 -C milkchannel --waitForEvent --peerAddresses milk-partya:7051 milk-partyb:7051 -c '{"Args":["putMilkReport", "milk id", "cow id", "machine id",  "report data aaaa"]}' -n factory `
+3.  `peer chaincode invoke -o milk-orderer:7050 -C milkchannel --waitForEvent --peerAddresses milk-partya:7051 milk-partyb:7051 -c '{"Args":["putMilkReport", "milk id", "seller operation"]}' -n seller`
+
+最后查询牛奶id为`milk id`的生产链条数据：
+` peer chaincode invoke -o milk-orderer:7050 -C milkchannel --waitForEvent --peerAddresses milk-partya:7051 milk-partyb:7051 -c '{"Args":["getFullMilkHistory", "milk id", "seller operation"]}' -n seller`。
+
+获取到的数据为:
+```json
+{
+    "report_map": {
+        "factory": [
+            {
+                "milk_id": "milk id",
+                "cow_id": "cow id",
+                "machine_id": "machine id",
+                "report_data": "report data aaaa",
+                "timestamp": "2020-02-11 01:52:20 PM"
+            }
+        ],
+        "farm": [
+            {
+                "milk_id": "",
+                "cow_id": "cow id",
+                "machine_id": "",
+                "report_data": "report data for cow lallala ",
+                "timestamp": "2020-02-11 01:51:59 PM"
+            }
+        ],
+        "seller": [
+            {
+                "milk_id": "milk id",
+                "cow_id": "",
+                "machine_id": "",
+                "report_data": "seller operation",
+                "timestamp": "2020-02-11 01:56:01 PM"
+            }
+        ]
+    }
+}
+```
+
 ## 应用程序
+
+
