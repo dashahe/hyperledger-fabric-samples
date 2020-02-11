@@ -52,12 +52,6 @@ networkUp() {
 
     IMAGE_TAG=$IMAGE_TAG docker-compose -f $COMPOSE_FILE up -d orderer partya partyb partyc cli
 
-    echo Vendoring Go dependencies ...
-    pushd ../chaincode
-    GO111MODULE=on go mod vendor
-    go list
-    popd
-
     docker exec cli sh scripts/script.sh
 }
 
