@@ -1,4 +1,4 @@
-import { Wallets, X509Identity } from 'fabric-network';
+import { Wallets } from 'fabric-network';
 import * as fs from 'fs';
 import * as path from 'path';
 
