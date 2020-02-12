@@ -1,0 +1,64 @@
+{
+  "name": "milk-network",
+  "x-type": "hlfv1",
+  "description": "The basic network",
+  "version": "1.0",
+  "channels": {
+    "milkchannel": {
+      "orderers": [
+        "orderer.example.com"
+      ],
+      "peers": {
+        "partya.example.com": {
+          "endorsingPeer": true,
+          "chaincodeQuery": true,
+          "ledgerQuery": true,
+          "eventSource": true
+        }
+      }
+    }
+  },
+  "organizations": {
+    "partya": {
+      "mspid": "partya",
+      "peers": [
+        "partya.example.com"
+      ],
+      "certificateAuthorities": [
+        "ca-partya"
+      ]
+    }
+  },
+  "orderers": {
+    "orderer.example.com": {
+      "url": "grpc://localhost:7050",
+      "grpcOptions": {
+        "ssl-target-name-override": "orderer.example.com"
+      }
+    }
+  },
+  "peers": {
+    "partya.example.com": {
+      "url": "grpc://localhost:7051",
+      "grpcOptions": {
+        "ssl-target-name-override": "partya.example.com",
+        "request-timeout": 120001
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "ca-partya": {
+      "url": "http://localhost:7054",
+      "httpOptions": {
+        "verify": false
+      },
+      "registrar": [
+        {
+          "enrollId": "admin",
+          "enrollSecret": "adminpw"
+        }
+      ],
+      "caName": "ca-partya"
+    }
+  }
+}
