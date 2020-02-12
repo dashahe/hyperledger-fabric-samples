@@ -50,7 +50,7 @@ networkUp() {
     generateCerts
     generateChannelArtifacts
 
-    IMAGE_TAG=$IMAGE_TAG docker-compose -f $COMPOSE_FILE up -d orderer partya partyb partyc cli
+    IMAGE_TAG=$IMAGE_TAG docker-compose -f $COMPOSE_FILE up -d orderer partya partyb partyc cli ca-partya ca-partyb ca-partyc
 
     docker exec cli sh scripts/script.sh
 }
