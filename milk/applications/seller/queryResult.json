@@ -1,0 +1,38 @@
+{
+    "report_map": {
+        "factory": [
+            {
+                "milk_id": "66666",
+                "cow_id": "111",
+                "machine_id": "777",
+                "report_data": "operation operation operation again",
+                "timestamp": "2020-02-12 06:48:49 AM"
+            },
+            {
+                "milk_id": "66666",
+                "cow_id": "111",
+                "machine_id": "555",
+                "report_data": "operation operation operation",
+                "timestamp": "2020-02-12 06:48:19 AM"
+            }
+        ],
+        "farm": [
+            {
+                "milk_id": "",
+                "cow_id": "111",
+                "machine_id": "",
+                "report_data": "222",
+                "timestamp": "2020-02-12 06:26:30 AM"
+            }
+        ],
+        "seller": [
+            {
+                "milk_id": "66666",
+                "cow_id": "",
+                "machine_id": "",
+                "report_data": "operation in seller",
+                "timestamp": "2020-02-12 06:58:44 AM"
+            }
+        ]
+    }
+}
